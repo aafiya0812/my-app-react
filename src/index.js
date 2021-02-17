@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './api/UserList';
 import reportWebVitals from './reportWebVitals';
 import UserList from './api/UserList.js';
-import Garage from './props-example.js';
+import AddUser from './api/AddUser.js';
 
 ReactDOM.render(<UserList />, document.getElementById('root'));
 
-ReactDOM.render(<Garage />, document.getElementById('root1'));
+ReactDOM.render(<AddUser />, document.getElementById('add-user'));
 
 /*ReactDOM.render(
   <React.StrictMode>

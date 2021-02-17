@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './api/UserList';
 import reportWebVitals from './reportWebVitals';
-import CarColor from './App.js';
+import UserList from './api/UserList.js';
 import Garage from './props-example.js';
 
-ReactDOM.render(<CarColor />, document.getElementById('root'));
+ReactDOM.render(<UserList />, document.getElementById('root'));
 
 ReactDOM.render(<Garage />, document.getElementById('root1'));
 

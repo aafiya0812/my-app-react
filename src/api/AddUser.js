@@ -10,17 +10,14 @@ class AddUser extends React.Component {
             email: '',
             hasError: false,
         };
-        this.handleNameChanges = this.handleNameChanges.bind(this);
-        this.handleEmailChanges = this.handleEmailChanges.bind(this);
+        this.handleChanges = this.handleChanges.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleNameChanges(event) {
-        this.setState({name: event.target.value});
-    }
-
-    handleEmailChanges(event) {
-        this.setState({email: event.target.value});
+    handleChanges = (event) => {
+        let nam = event.target.name;
+        let val = event.target.value;
+        this.setState({[nam]: val});
     }
 
     handleSubmit(event) {
@@ -37,11 +34,11 @@ class AddUser extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Name:
-                        <input type="text" value={this.state.name} onChange={this.handleNameChanges} />
+                        <input type="text" name="name" value={this.state.name} onChange={this.handleChanges} />
                     </label>
                     <label>
                         Email:
-                        <input type="email" value={this.state.email} onChange={this.handleEmailChanges} />
+                        <input type="email" name="email" value={this.state.email} onChange={this.handleChanges} />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>

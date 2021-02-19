@@ -7,9 +7,10 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Container from '@material-ui/core/Container';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+import EditIcon from '@material-ui/icons/Edit';
+import EditModal from './EditModal.js';
 
 class UserList extends React.Component {
     constructor() {
@@ -17,7 +18,11 @@ class UserList extends React.Component {
         this.state = {
             users: [],
             hasError: false,
+            showEditModal: false,
+            selectedUser: {},
         };
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
     componentDidMount () {
@@ -37,6 +42,17 @@ class UserList extends React.Component {
             this.getUsers();
         })
     }
+
+    showModal = (user) => {
+        this.setState({
+            showEditModal: true,
+            selectedUser: user,
+        });
+    };
+
+    hideModal = () => {
+        this.setState({ showEditModal: false });
+    };
 
     render() {
         if (this.state.hasError) {
@@ -59,9 +75,12 @@ class UserList extends React.Component {
                                         <ListItem>
                                             <ListItemText
                                             primary={ user.name }
-                                            secondary='Secondary text'
+                                            secondary={ user.email }
                                             />
                                             <ListItemSecondaryAction>
+                                                <IconButton edge="end" aria-label="edit" onClick= {() => {this.showModal(user)}}>
+                                                    <EditIcon />
+                                                </IconButton>
                                                 <IconButton edge="end" aria-label="delete" onClick= {() => {this.deleteUser(user.id)}}>
                                                     <DeleteRoundedIcon />
                                                 </IconButton>
@@ -70,6 +89,7 @@ class UserList extends React.Component {
                                     </List>
                                 ) }
                             </div>
+                            {this.state.showEditModal ? <EditModal show={this.state.showEditModal} handleClose={this.hideModal} userId={this.state.selectedUser.id} userName={this.state.selectedUser.name} userEmail={this.state.selectedUser.email}></EditModal> : ''}
                         </Grid>
                     </Grid>
                 </Container>

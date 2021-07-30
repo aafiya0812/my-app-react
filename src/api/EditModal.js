@@ -25,12 +25,9 @@ class EditModal extends React.Component {
     }
 
     handleSubmit = (userId, event) => {
-        console.log(this.state);
-        console.log(process.env.REACT_APP_API_BASE_URL+`/user/update/`+userId);
-        alert(userId);
         axios.put(process.env.REACT_APP_API_BASE_URL+`/user/update/`+userId, this.state)
         .then((response) => {
-            // window.location.reload();
+            window.location.reload();
         })
     }
 
